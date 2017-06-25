@@ -1,0 +1,80 @@
+.colors {
+  width: 340px;
+  padding: 10px 0 0 5px;
+  
+  button {
+    height: 60px;
+    width: 60px;
+    margin-left: 0;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    
+    &:disabled,
+    &[disabled] {
+      border: 2px solid #999999;
+    }
+  }
+
+}
+
+textarea {
+  width: 300px;
+}
+
+img {
+ width: 32px;
+ image-rendering: crisp-edges;
+ image-rendering: pixelated;
+}
+
+.workspace {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  margin-left: -320px;
+}
+
+.header {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  border: 1px solid black;
+  padding: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.gallary {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  margin-left: 320px;
+  width: calc(50% - 320px);
+
+  .gallary-item {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+
+    button {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      width: 20px;
+      height: 20px;
+    }
+
+    .mat-icon {
+      width: 10px;
+      height: 10px;
+      font-size: 10px;
+      line-height: 10px;
+      padding: 0;
+    }
+
+    .mat-mini-fab {
+      line-height: 10px;
+    }
+
+  }
+}
