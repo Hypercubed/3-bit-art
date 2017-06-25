@@ -25,7 +25,7 @@
 
 <div class="gallary">
   <div class="gallary-item" *ngFor="let g of gallary; trackBy: trackByFn" [@anim]>
-    <a [attr.href]="'http://localhost:4200/#/'+g.data" (click)="data = g.data">
+    <a [attr.href]="'#'+g.data" (click)="data = g.data">
       <app-three-bit-canvas
         [size]="canvasSize"
         [scale]="5"

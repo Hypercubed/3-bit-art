@@ -82,7 +82,7 @@ export class AppComponent {
 
   saveGallery() {
     const gallary = this.gallary.map(g => g.data);
-    localStorage.setItem('gallary', JSON.stringify(this.gallary));
+    localStorage.setItem('gallary', JSON.stringify(gallary));
   }
 
   onDataChange(data: string): void {
