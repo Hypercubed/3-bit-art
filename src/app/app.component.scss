@@ -21,12 +21,6 @@ textarea {
   width: 300px;
 }
 
-img {
- width: 32px;
- image-rendering: crisp-edges;
- image-rendering: pixelated;
-}
-
 .workspace {
   position: fixed;
   top: 10%;
@@ -39,19 +33,27 @@ img {
   top: 20px;
   left: 20px;
   border: 1px solid black;
-  padding: 20px;
+  padding: 30px;
   background-color: white;
   text-align: center;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    width: 120px;
+  }
 }
 
-.gallary {
+.gallery {
   position: fixed;
   top: 20px;
   left: 50%;
   margin-left: 320px;
   width: calc(50% - 320px);
 
-  .gallary-item {
+  .gallery-item {
     position: relative;
     display: inline-block;
     margin: 10px;

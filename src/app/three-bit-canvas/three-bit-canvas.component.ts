@@ -164,4 +164,8 @@ export class ThreeBitCanvasComponent implements OnInit, AfterViewInit {
     this.data = this.bitData.toBase64();
     return this.draw();
   }
+
+  toDataURL() {
+    return this.canvas.toDataURL('image/png');
+  }
 }

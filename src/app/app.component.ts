@@ -3,6 +3,7 @@ import { trigger, sequence, transition, animate, style, state } from '@angular/c
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { MdSnackBar } from '@angular/material';
 
+import { ThreeBitCanvasComponent } from './three-bit-canvas/three-bit-canvas.component';
 import { BitView } from './utils/bitview';
 
 let i = 0;
@@ -40,7 +41,7 @@ function nextId() {
   ]
 })
 export class AppComponent {
-  gallary: any[] = [];
+  gallery: any[] = [];
 
   data: string = '/'.repeat(128);
   canvasSize = [16, 16];
@@ -57,13 +58,16 @@ export class AppComponent {
   ];
   color: any = this.colors[0];
 
+  @ViewChild(ThreeBitCanvasComponent)
+  canvas: ThreeBitCanvasComponent;
+
   constructor(public location: Location, public snackBar: MdSnackBar) {
     const path = this.location.path(true);
     this.data = (path.length !== 0) ? path : localStorage.getItem('data') || this.data;
 
-    const gallary = localStorage.getItem('gallary');
-    if (gallary) {
-      this.gallary = JSON.parse(gallary).map(data => {
+    const gallery = localStorage.getItem('gallery');
+    if (gallery) {
+      this.gallery = JSON.parse(gallery).map(data => {
         return {
           data,
           id: nextId()
@@ -73,16 +77,21 @@ export class AppComponent {
   }
 
   onSave(): any {
-    this.gallary.push({ id: nextId(), data: this.data });
+    this.gallery.push({ id: nextId(), data: this.data });
     this.saveGallery();
-    return this.snackBar.open('768 bits saved to your gallary', undefined, {
+    return this.snackBar.open('768 bits saved to your gallery', undefined, {
       duration: 1000
     });
   }
 
+  onSavePng() {
+    const png = this.canvas.toDataURL();
+    window.open(png, '_blank');
+  }
+
   saveGallery() {
-    const gallary = this.gallary.map(g => g.data);
-    localStorage.setItem('gallary', JSON.stringify(gallary));
+    const gallery = this.gallery.map(g => g.data);
+    localStorage.setItem('gallery', JSON.stringify(gallery));
   }
 
   onDataChange(data: string): void {
@@ -91,10 +100,10 @@ export class AppComponent {
     this.location.replaceState(data);
   }
 
-  onDeleteGallaryItem(id: number): any {
-    this.gallary = this.gallary.filter(g => g.id !== id);
+  onDeleteGalleryItem(id: number): any {
+    this.gallery = this.gallery.filter(g => g.id !== id);
     this.saveGallery();
-    return this.snackBar.open('768 bits removed from your gallary', undefined, {
+    return this.snackBar.open('768 bits removed from your gallery', undefined, {
       duration: 1000
     });
   }

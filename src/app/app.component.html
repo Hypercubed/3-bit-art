@@ -8,6 +8,12 @@
   <a href="https://github.com/Hypercubed">Jayson Harshbarger</a>
   <p></p>
   <a href="https://colo--colo.tumblr.com/">Ayako Ishikawa</a>
+
+  <a href="https://github.com/Hypercubed/3-bit-art">
+    <img
+      src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67"
+      alt="Fork me on GitHub"
+      data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
 </div>
 
 <div class="workspace">
@@ -20,11 +26,13 @@
     </span>
   </div>
 
-  <button (click)="onSave()" md-raised-button>Save</button>
+  <button (click)="onSave()" md-raised-button>Save to my gallery</button>
+  <button (click)="onSavePng()" md-raised-button>Save as PNG</button>
+  <!-- button (click)="onSavePxon()" md-raised-button>Save as PXON</button -->
 </div>
 
-<div class="gallary">
-  <div class="gallary-item" *ngFor="let g of gallary; trackBy: trackByFn" [@anim]>
+<div class="gallery">
+  <div class="gallery-item" *ngFor="let g of gallery; trackBy: trackByFn" [@anim]>
     <a [attr.href]="'#'+g.data" (click)="data = g.data">
       <app-three-bit-canvas
         [size]="canvasSize"
@@ -33,6 +41,6 @@
         [color]="color"
         [drawingEnabled]="false"></app-three-bit-canvas>
     </a>
-    <button (click)="onDeleteGallaryItem(g.id)" md-mini-fab><md-icon>clear</md-icon></button>
+    <button (click)="onDeleteGalleryItem(g.id)" md-mini-fab><md-icon>clear</md-icon></button>
   </div>
 </div>
