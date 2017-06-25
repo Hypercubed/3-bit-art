@@ -89,7 +89,7 @@ export class ThreeBitCanvasComponent implements OnInit, AfterViewInit {
 
     for (let i = 0; i < 256; i++) {
       const index = i * 4;
-      const i2 = i * 3
+      const i2 = i * 3;
 
       this.imageData.data[index + 0] = this.bitData.getBit(i2) * 255;
       this.imageData.data[index + 1] = this.bitData.getBit(i2 + 1) * 255;
@@ -167,5 +167,34 @@ export class ThreeBitCanvasComponent implements OnInit, AfterViewInit {
 
   toDataURL() {
     return this.canvas.toDataURL('image/png');
+  }
+
+  toPxonData(): any[] {
+    if (!this.imageData) {
+      return;
+    }
+
+    const pxonData = [];
+
+    for (let i = 0; i < 256; i++) {
+      const y = Math.floor(i / 16) * this.scale;
+      const x = i % 16 * this.scale;
+
+      const i2 = i * 3;
+
+
+      const r = this.bitData.getBit(i2) * 255;
+      const g = this.bitData.getBit(i2 + 1) * 255;
+      const b = this.bitData.getBit(i2 + 2) * 255;
+
+      pxonData.push({
+        x,
+        y,
+        color: `rgba(${r},${g},${b},1)`,
+        size: this.scale
+      });
+    }
+
+    return pxonData;
   }
 }

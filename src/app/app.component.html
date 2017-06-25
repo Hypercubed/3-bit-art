@@ -1,46 +1,54 @@
 
-<div class="header">
-  <h1>3-bit Art</h1>
-  <h2>Eight colors ought to be enough for anybody.</h2>
 
-  <h4>by</h4>
+<div class="Grid">
+  <div class="Grid-cell header">
+    <div class="info-box">
+      <h1>3-bit Art</h1>
+      <h2>Eight colors ought to be enough for anybody.</h2>
 
-  <a href="https://github.com/Hypercubed">Jayson Harshbarger</a>
-  <p></p>
-  <a href="https://colo--colo.tumblr.com/">Ayako Ishikawa</a>
+      <h4>by</h4>
 
-  <a href="https://github.com/Hypercubed/3-bit-art">
-    <img
-      src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67"
-      alt="Fork me on GitHub"
-      data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
-</div>
+      <a href="https://github.com/Hypercubed">Jayson Harshbarger</a>
+      <p></p>
+      <a href="https://colo--colo.tumblr.com/">Ayako Ishikawa</a>
 
-<div class="workspace">
-  <app-three-bit-canvas [size]="canvasSize" [scale]="20" [data]="data" (dataChange)="onDataChange($event)" [color]="color"></app-three-bit-canvas>
-
-  <br />
-  <div class="colors">
-    <span *ngFor="let c of colors">
-      <button (click)="color = c" [style.background-color]="c.value"></button>
-    </span>
+      <a href="https://github.com/Hypercubed/3-bit-art">
+        <img
+          src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67"
+          alt="Fork me on GitHub"
+          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>
+    </div>
   </div>
 
-  <button (click)="onSave()" md-raised-button>Save to my gallery</button>
-  <button (click)="onSavePng()" md-raised-button>Save as PNG</button>
-  <!-- button (click)="onSavePxon()" md-raised-button>Save as PXON</button -->
-</div>
+  <div class="Grid-cell workspace">
+    <app-three-bit-canvas [size]="canvasSize" [scale]="20" [data]="data" (dataChange)="onDataChange($event)" [color]="color"></app-three-bit-canvas>
 
-<div class="gallery">
-  <div class="gallery-item" *ngFor="let g of gallery; trackBy: trackByFn" [@anim]>
-    <a [attr.href]="'#'+g.data" (click)="data = g.data">
-      <app-three-bit-canvas
-        [size]="canvasSize"
-        [scale]="5"
-        [data]="g.data"
-        [color]="color"
-        [drawingEnabled]="false"></app-three-bit-canvas>
-    </a>
-    <button (click)="onDeleteGalleryItem(g.id)" md-mini-fab><md-icon>clear</md-icon></button>
+    <br />
+    <div class="colors">
+      <span *ngFor="let c of colors">
+        <button (click)="color = c" [style.background-color]="c.value" [class.active]="color === c"></button>
+      </span>
+    </div>
+
+    <div class="tools">
+      <button (click)="onSave()" md-raised-button>Save to gallery</button>
+      <button (click)="onSavePng()" md-raised-button>Save as PNG</button>
+      <button (click)="onSavePxon()" md-raised-button>Save as PXON</button>
+      <!-- button (click)="importPxon()" md-raised-button>Import PXON</button -->
+    </div>
+  </div>
+
+  <div class="Grid-cell gallery">
+    <div class="gallery-item" *ngFor="let g of gallery; trackBy: trackByFn" [@anim]>
+      <a [attr.href]="'#'+g.data" (click)="data = g.data">
+        <app-three-bit-canvas
+          [size]="canvasSize"
+          [scale]="5"
+          [data]="g.data"
+          [color]="'black'"
+          [drawingEnabled]="false"></app-three-bit-canvas>
+      </a>
+      <button (click)="onDeleteGalleryItem(g.id)" md-mini-fab><md-icon>clear</md-icon></button>
+    </div>
   </div>
 </div>

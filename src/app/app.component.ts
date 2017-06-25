@@ -89,6 +89,22 @@ export class AppComponent {
     window.open(png, '_blank');
   }
 
+  onSavePxon() {
+    const pixels = this.canvas.toPxonData();
+    const pxon = {
+      exif: {
+        software: 'https://hypercubed.github.io/3-bit-art/',
+        artist: 'Anonymous 3bit artist',
+        dateTime: new Date()
+      },
+      pxif: {
+        pixels,
+        dataURL: this.canvas.toDataURL()
+      }
+    };
+    window.open('data:text/json,' + encodeURIComponent(JSON.stringify(pxon)), '_blank');
+  }
+
   saveGallery() {
     const gallery = this.gallery.map(g => g.data);
     localStorage.setItem('gallery', JSON.stringify(gallery));
