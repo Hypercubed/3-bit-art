@@ -136,13 +136,19 @@ export class ThreeBitCanvasComponent implements OnInit, AfterViewInit {
   }
 
   drawPixel (x: number, y: number): void {
+    if (x <= 0 || y <= 0) {
+      return;
+    }
+
     x = Math.floor(x / this.scale / this.gridSize) * this.gridSize;
     y = Math.floor(y / this.scale / this.gridSize) * this.gridSize;
 
-    if (x < this.size[0] && y < this.size[1]) {
-      const {r, g, b} = this.color.rgb;
-      return this.setPixel(x, y, r, g, b, 255);
+    if (x >= this.size[0] || y >= this.size[1]) {
+      return;
     }
+
+    const {r, g, b} = this.color.rgb;
+    return this.setPixel(x, y, r, g, b, 255);
   }
 
   setPixel (x: number, y: number, r: number, g: number, b: number, a: number): void {

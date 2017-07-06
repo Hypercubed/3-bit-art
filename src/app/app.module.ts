@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MdButtonModule, MdIconModule, MdSnackBarModule } from '@angular/material';
+import { MdButtonModule, MdIconModule, MdSnackBarModule, MdTooltipModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ThreeBitCanvasComponent } from './three-bit-canvas/three-bit-canvas.component';
@@ -19,7 +19,8 @@ import { ThreeBitCanvasComponent } from './three-bit-canvas/three-bit-canvas.com
     BrowserAnimationsModule,
     MdButtonModule,
     MdIconModule,
-    MdSnackBarModule
+    MdSnackBarModule,
+    MdTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
